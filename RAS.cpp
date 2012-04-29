@@ -42,12 +42,16 @@ static void _cmd_delay(void)
   delayMicroseconds(SPI_CMD_TO_DATA_DELAY);
 }
 
-void RAS::_send_cmd(uint8_t cmd)
+uint8_t RAS::_send_cmd(uint8_t cmd)
 {
+  uint8_t retval;
+
   digitalWrite(sspin, LOW);
 
-  SPI.transfer(cmd);
+  retval = SPI.transfer(cmd);
   _cmd_delay();
+
+  return retval;
 }
 
 void RAS::_end_spi(void)

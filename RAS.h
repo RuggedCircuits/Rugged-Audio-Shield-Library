@@ -174,7 +174,7 @@ public:
   uint8_t GetBootloaderVersionMajor(void) { return info.bootloaderVersion>>8; }
   uint8_t GetBootloaderVersionMinor(void) { return info.bootloaderVersion&0xFFU; }
   uint8_t IsSDCardInserted(void) { return info.sockins; }
-  RAS_State_t GetState(void) { return (RAS_State_t) _spi_get_1byte('?'); }
+  RAS_State_t GetState(void) { return (RAS_State_t) _send_cmd('?'); }
   void TxControl(uint8_t enable) { _spi_send_1byte('T', enable); }
   void TxEnable(void) { TxControl(1); }
   void TxDisable(void) { TxControl(0); }
@@ -188,7 +188,7 @@ private:
   void _spi_get_buf(uint8_t *buf, uint8_t bytes);
   void _spi_send_buf(const uint8_t *buf, uint8_t bytes);
   void _send_filename(uint8_t cmd, const char *fname);
-  void _send_cmd(uint8_t cmd);
+  uint8_t _send_cmd(uint8_t cmd);
   void _end_spi(void);
 
   struct {
