@@ -33,6 +33,7 @@ RAS RAS;
 
 void setup(void) {
    RAS.begin();
+   Serial.begin(38400);
 }
 
 void loop(void) {
@@ -41,7 +42,26 @@ void loop(void) {
   // Don't bother trying to play a WAV file if we don't even have an SD card!
   RAS.ReadInfo();
   if (RAS.IsSDCardInserted()) {
+
+    // We have an SD card inserted. Try to play a WAV file.
     RAS.PlayWAV("SOMEFILE.WAV");
+
+    // Wait for the file to stop playing by checking the state and waiting for it to be Idle
+    do {
+      delay(100);
+      if (RAS.GetState() == STATE_IDLE) break;
+    } while (1);
+
+    // Was playing the file successful? or did we have an error?
+    {
+      uint16_t error = RAS.GetLastError();
+
+      if (error) {
+        Serial.println(RAS.InterpretError(error));
+      } else {
+        Serial.println("Played SOMEFILE.WAV");
+      }
+    }
   }
 }
 // vim: syntax=cpp expandtab ts=2 sw=2 ai cindent
