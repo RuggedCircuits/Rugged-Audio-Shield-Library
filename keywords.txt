@@ -1,0 +1,83 @@
+#############################################
+# Syntax Coloring Map for Rugged Audio Shield
+#############################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+RAS	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+begin	        KEYWORD2
+SetInputGains	        KEYWORD2
+SetInputGainLine	        KEYWORD2
+SetInputGainMic	        KEYWORD2
+GetInputGainLine	        KEYWORD2
+GetInputGainMic	        KEYWORD2
+PlayWAV	        KEYWORD2
+PlayStream	        KEYWORD2
+PlayStreamBuffer	        KEYWORD2
+RecordWAV	        KEYWORD2
+OutputControl	        KEYWORD2
+OutputDisable	        KEYWORD2
+OutputEnable	        KEYWORD2
+OutputBassBoostControl	        KEYWORD2
+OutputBassBoostEnable	        KEYWORD2
+OutputBassBoostDisable	        KEYWORD2
+OutputGainBoostControl	        KEYWORD2
+OutputGainBoostEnable	        KEYWORD2
+OutputGainBoostDisable	        KEYWORD2
+OutputVolumeSet	        KEYWORD2
+AudioEffect	        KEYWORD2
+Stop	        KEYWORD2
+EraseFilesystem	        KEYWORD2
+InitSD	        KEYWORD2
+PresizeFile	        KEYWORD2
+ReadInfo	        KEYWORD2
+GetAppVersionMajor	        KEYWORD2
+GetAppVersionMinor	        KEYWORD2
+GetAppVersionBuild	        KEYWORD2
+GetBootloaderVersionMajor	        KEYWORD2
+GetBootloaderVersionMinor	        KEYWORD2
+IsSDCardInserted	        KEYWORD2
+GetState	        KEYWORD2
+TxControl	        KEYWORD2
+TxEnable	        KEYWORD2
+TxDisable	        KEYWORD2
+GetLastError	        KEYWORD2
+InterpretError	        KEYWORD2
+ReplaceApp	        KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+SOURCE_MONO	LITERAL1
+SOURCE_STEREO	LITERAL1
+EFFECT_NONE	LITERAL1
+EFFECT_ECHO	LITERAL1
+EFFECT_FLANGE	LITERAL1
+SOURCE_LINE	LITERAL1
+SOURCE_MIC	LITERAL1
+STATE_IDLE	LITERAL1
+STATE_RECORDING_TO_SD	LITERAL1
+STATE_PLAYING_FROM_SD	LITERAL1
+STATE_PLAYING_FROM_SPI	LITERAL1
+STATE_RECORDING_TO_SPI	LITERAL1
+STATE_PASS_THROUGH	LITERAL1
+INPUT_GAIN_1X	LITERAL1
+INPUT_GAIN_2X	LITERAL1
+INPUT_GAIN_4X	LITERAL1
+INPUT_GAIN_8X	LITERAL1
+SPI_RATE_8MHz	LITERAL1
+SPI_RATE_2MHz	LITERAL1
+SPI_RATE_500kHz	LITERAL1
+SPI_RATE_250kHz	LITERAL1
+SPI_RATE_16MHz	LITERAL1
+SPI_RATE_4MHz	LITERAL1
+SPI_RATE_1MHz	LITERAL1
+RAS_STREAM_BUFFER_SIZE_BYTES	LITERAL1
