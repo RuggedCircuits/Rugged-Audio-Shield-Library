@@ -23,6 +23,9 @@
 #ifndef _RAS_H_
 #define _RAS_H_
 
+static const uint8_t RAS_VERSION_MAJOR = 1;
+static const uint8_t RAS_VERSION_MINOR = 0;
+
 #if ARDUINO >= 100
 #  include "Arduino.h"
 #else

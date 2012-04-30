@@ -118,6 +118,9 @@ uint16_t computeIncrement(uint16_t freq)
      To round to the nearest 16-bit integer:
 
         phaseIncrement = (freq*65536 + Fs/2) / Fs
+
+     Hopefully the compiler will be smart enough to optimize *65536UL to
+     a left-shift by 16 bits.
   */
   return (uint16_t) ((freq * 65536UL + Fs/2) / Fs);
 }

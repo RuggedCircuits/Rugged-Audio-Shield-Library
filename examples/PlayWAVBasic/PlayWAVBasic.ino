@@ -1,12 +1,9 @@
 /*
   Rugged Audio Shield sketch that demonstrates WAV file playback. The
   sketch simply plays a WAV file called SOMEFILE.WAV in the root
-  directory of the microSD card, delays 1s, then repeats.
-
-  Moving beyond the PlayWAVBasic sketch, this sketch introduces more
-  advanced usage such as checking for whether or not a microSD card
-  is present, waiting for the WAV file to finish playing, and displaying
-  an error code (if there was an error in playback).
+  directory of the microSD card, delays 1s, then repeats. The SOMEFILE.WAV
+  file should have a duration less than 1 second (otherwise, increase
+  the delay from 1s to something longer than the WAV file duration).
 
   Copyright (c) 2012 Rugged Circuits LLC.  All rights reserved.
   http://ruggedcircuits.com
@@ -36,35 +33,11 @@ RAS RAS;
 
 void setup(void) {
    RAS.begin();
-   Serial.begin(38400);
 }
 
 void loop(void) {
   delay(1000);
 
-  // Don't bother trying to play a WAV file if we don't even have an SD card!
-  RAS.ReadInfo();
-  if (RAS.IsSDCardInserted()) {
-
-    // We have an SD card inserted. Try to play a WAV file.
-    RAS.PlayWAV("SOMEFILE.WAV");
-
-    // Wait for the file to stop playing by checking the state and waiting for it to be Idle
-    do {
-      delay(100);
-      if (RAS.GetState() == STATE_IDLE) break;
-    } while (1);
-
-    // Was playing the file successful? or did we have an error?
-    {
-      uint16_t error = RAS.GetLastError();
-
-      if (error) {
-        Serial.println(RAS.InterpretError(error));
-      } else {
-        Serial.println("Played SOMEFILE.WAV");
-      }
-    }
-  }
+  RAS.PlayWAV("SOMEFILE.WAV");
 }
-// vim: syntax=cpp expandtab ts=2 sw=2 ai cindent
+
