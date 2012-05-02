@@ -172,6 +172,7 @@ static void sd_init(void)
 {
   Serial.print(F("Type SPI prescale (0: 8MB/s, 1: 2MB/s, 6: 1MB/s)"));
   RAS.InitSD((RAS_SPI_Rate_t)atoi(getLine()));
+  RAS.WaitForIdle();
 }
 
 static void presizeWAV(void)

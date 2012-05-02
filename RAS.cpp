@@ -28,14 +28,18 @@
 // each packet) and decide what to do with it. Given everything that (may be)
 // going on, we should leave plenty of time for this first byte to be
 // received, interpreted, and acted upon. 100 microseconds is generous.
+// If you are trying to stream data to the shield, experiment with lowering
+// this number to increase throughput (if you need higher throughput!)
 #define SPI_CMD_TO_DATA_DELAY 100 // microseconds
 
+#if 0
 static void _dumpbuf(const uint8_t *buf, uint16_t size)
 {
   while (size--) {
     Serial.print(*buf++, HEX); Serial.print(' ');
   }
 }
+#endif
 
 static void _cmd_delay(void)
 {
@@ -252,4 +256,12 @@ void RAS::PresizeFile(const char *fname, uint16_t megabytes)
   _end_spi();
 }
 
+void RAS::WaitForIdle(void)
+{
+  RAS_State_t state;
+
+  do {
+    state = GetState();
+  } while (state);
+}
 // vim: expandtab ts=2 sw=2 ai cindent

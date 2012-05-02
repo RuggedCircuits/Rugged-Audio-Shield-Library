@@ -33,6 +33,8 @@ RAS RAS;
 
 void setup(void) {
    RAS.begin();
+   RAS.InitSD();
+   delay(100);
 }
 
 void loop(void) {
@@ -40,4 +42,4 @@ void loop(void) {
 
   RAS.PlayWAV("SOMEFILE.WAV");
 }
-
+// vim: expandtab ts=2 sw=2 ai cindent syntax=cpp

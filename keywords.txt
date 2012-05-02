@@ -51,6 +51,7 @@ TxDisable	        KEYWORD2
 GetLastError	        KEYWORD2
 InterpretError	        KEYWORD2
 ReplaceApp	        KEYWORD2
+WaitForIdle             KEYWORD2
 
 #######################################
 # Constants (LITERAL1)

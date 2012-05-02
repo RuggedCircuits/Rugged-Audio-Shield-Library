@@ -37,6 +37,8 @@ RAS RAS;
 void setup(void) {
    RAS.begin();
    Serial.begin(38400);
+   RAS.InitSD();
+   delay(100);
 }
 
 void loop(void) {

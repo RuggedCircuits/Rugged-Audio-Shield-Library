@@ -2,7 +2,7 @@
   Rugged Audio Shield sketch that demonstrates recording audio to the
   microSD card. The sketch waits for a keypress from the serial port
   (at 38400 bps), then records the Line In input in stereo for 5 seconds
-  to a file called SOMEFILE.WAV. The sketch then plays the recorded
+  to a file called RECFILE.WAV. The sketch then plays the recorded
   file back endlessly.
 
   Copyright (c) 2012 Rugged Circuits LLC.  All rights reserved.
@@ -34,18 +34,20 @@ RAS RAS;
 void setup(void) {
    RAS.begin();
    Serial.begin(38400);
+   RAS.InitSD();
+
    Serial.println("Press ENTER to start recording");
-   
    while (! Serial.available()) /* NULL */ ;
 
-   RAS.RecordWAV(32000, SOURCE_STEREO, SOURCE_LINE, "SOMEFILE.WAV");
+   RAS.RecordWAV(32000, SOURCE_STEREO, SOURCE_LINE, "RECFILE.WAV");
    delay(5000); // Record for 5s
    RAS.Stop();
-   delay(10);
+   RAS.WaitForIdle();
 }
 
 void loop(void) {
-  RAS.PlayWAV("SOMEFILE.WAV");
-  delay(5500);
+  delay(1000);
+  RAS.PlayWAV("RECFILE.WAV");
+  RAS.WaitForIdle();
 }
 // vim: expandtab ts=2 sw=2 ai cindent syntax=cpp

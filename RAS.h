@@ -58,6 +58,7 @@ typedef enum {
   STATE_PLAYING_FROM_SPI =3,
   STATE_RECORDING_TO_SPI =4,
   STATE_PASS_THROUGH     =5,
+  STATE_BUSY             =6,
 
   STATE_NUM_STATES
 } RAS_State_t;
@@ -184,6 +185,7 @@ public:
   uint16_t GetLastError(void);
   const char *InterpretError(uint16_t err);
   void ReplaceApp(const char *fname) { _send_filename('!', fname); } // 8.3 format, UPPERCASE ONLY!
+  void WaitForIdle(void);
 
 private:
   uint8_t _spi_get_1byte(uint8_t cmd);
