@@ -34,19 +34,23 @@ RAS RAS;
 void setup(void) {
    RAS.begin();
    Serial.begin(38400);
-   RAS.InitSD();
 
    Serial.println("Press ENTER to start recording");
    while (! Serial.available()) /* NULL */ ;
+   Serial.println("Recording...");
 
-   RAS.RecordWAV(32000, SOURCE_STEREO, SOURCE_LINE, "RECFILE.WAV");
-   delay(5000); // Record for 5s
-   RAS.Stop();
+   RAS.InitSD(/*SPI_RATE_4MHz*/);
    RAS.WaitForIdle();
+   RAS.RecordWAV(32000, SOURCE_MONO, SOURCE_MIC, "RECFILE.WAV");
+   delay(5000); // Record for 5s
+   RAS.Stop(); RAS.WaitForIdle();
+   RAS.OutputEnable(); RAS.WaitForIdle();
+   RAS.OutputVolumeSet(27);
 }
 
 void loop(void) {
   delay(1000);
+  Serial.println("Playing RECFILE.WAV...");
   RAS.PlayWAV("RECFILE.WAV");
   RAS.WaitForIdle();
 }

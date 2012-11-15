@@ -164,7 +164,8 @@ static void recordWAV(void)
   Serial.print(F("\nType WAV file name to record to (8.3): "));
   buf = getLine();
   Serial.print(F("\n<")); Serial.print(buf); Serial.print(F(">\n"));
-
+  Serial.print(F("Stereo: ")); Serial.print(stereo);
+  Serial.print(F(" Source: ")); Serial.println(source);
   RAS.RecordWAV(30000, stereo, source, buf);
 }
 
@@ -196,7 +197,7 @@ static void doEffect(void)
   Serial.print(F("\nWhich source (0:Line 1:Mic): "));
   source = (RAS_Source_t) atoi(getLine());
 
-  RAS.AudioEffect(effect, 32000, SOURCE_STEREO, source);
+  RAS.AudioEffect(effect, 30000, SOURCE_STEREO, source);
   Serial.print('\n');
 }
 

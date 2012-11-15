@@ -38,19 +38,22 @@ RAS RAS;
 int lastVolume;
 
 void setup(void) {
+  delay(2000); // Let RAS do its own startup
+  
   RAS.begin(); // Default SPI select on D8
 
   // Adjust these to 1X, 2X, 4X, or 8X depending on your source material
   RAS.SetInputGainLine(INPUT_GAIN_1X); RAS.WaitForIdle();
-  RAS.SetInputGainMic(INPUT_GAIN_2X); RAS.WaitForIdle();
+  RAS.SetInputGainMic(INPUT_GAIN_1X); RAS.WaitForIdle();
 
   // First, play a file from an SD card that is assumed to be inserted and contains
   // the file SOMEFILE.WAV
   RAS.InitSD(); RAS.WaitForIdle();
 
-  RAS.PlayWAV("SOMEFILE.WAV");
-  RAS.WaitForIdle();
-
+  RAS.OutputEnable(); RAS.WaitForIdle();
+  RAS.OutputVolumeSet(20); RAS.WaitForIdle();
+  RAS.PlayWAV("SOMEFILE.WAV"); RAS.WaitForIdle();
+  
   // Start pass-through of mic+line (left channel) to output at 32 kHz
   RAS.AudioEffect(EFFECT_NONE, 32000, SOURCE_STEREO, SOURCE_MIC);
 }

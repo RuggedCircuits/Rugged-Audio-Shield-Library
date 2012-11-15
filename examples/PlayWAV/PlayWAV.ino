@@ -39,6 +39,7 @@ void setup(void) {
    Serial.begin(38400);
    RAS.InitSD();
    delay(100);
+   RAS.OutputEnable();
 }
 
 void loop(void) {

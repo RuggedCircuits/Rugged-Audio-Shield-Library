@@ -35,6 +35,7 @@ void setup(void) {
    RAS.begin();
    RAS.InitSD();
    delay(100);
+   RAS.OutputEnable();
 }
 
 void loop(void) {

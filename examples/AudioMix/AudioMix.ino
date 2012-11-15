@@ -39,6 +39,7 @@ void setup(void) {
   // Adjust these to 1X, 2X, 4X, or 8X depending on your source material
   RAS.SetInputGainLine(INPUT_GAIN_1X); delay(10);
   RAS.SetInputGainMic(INPUT_GAIN_2X); delay(10);
+  RAS.OutputEnable(); delay(10);
 
   // Start pass-through of mic+line (left channel) to output at 32 kHz
   RAS.AudioEffect(EFFECT_NONE, 32000, SOURCE_STEREO, SOURCE_MIC);
